@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GovBid | Drone bid watch</title>
+  <meta name="description" content="Daily analysis of federal and state bids for drone and UAS opportunities.">
+  <!-- Remove the next line if you want search engines to index the site. -->
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a78d6'/%3E%3Cpath d='M8 21l5-10 3 6 2-4 6 8z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <div class="brand">GovBid <span>by Marut-X Labs</span></div>
+    <h1>Drone related opportunities</h1>
+    <p class="lede" id="takeaway">Loading the latest snapshot…</p>
+    <div class="bar">
+      <label>Snapshot <select id="snap" class="select" aria-label="Choose a snapshot"></select></label>
+      <span id="meta" class="muted"></span>
+    </div>
+  </header>
+  <noscript><p>This page needs JavaScript to show the analysis.</p></noscript>
+
+  <section class="kpis" id="kpis" aria-label="Headline counts"></section>
+
+  <section class="sec">
+    <div class="sec-head"><div><h2>What is in the reports</h2>
+      <p class="desc">Every listing was read and sorted into drone related, other non-drone, or manned-aircraft parts buys.</p></div></div>
+    <div id="mix"></div>
+  </section>
+
+  <section class="sec" id="drone">
+    <div class="sec-head">
+      <div><h2>Drone related opportunities</h2>
+        <p class="desc">Sorted by deadline. Click a bar to filter the cards, or use the menu.</p></div>
+      <select id="cat" class="select" aria-label="Filter by category"></select>
+    </div>
+    <div id="catbars" class="bars"></div>
+    <div id="cards" class="cards"></div>
+  </section>
+
+  <section class="sec" id="deadlines">
+    <div class="sec-head"><div><h2>Deadlines</h2>
+      <p class="desc">Due dates of the drone related bids against the snapshot date. A hollow dot marks a date that had already passed.</p></div></div>
+    <div id="timeline" class="tl"></div>
+  </section>
+
+  <section class="sec" id="other">
+    <div class="sec-head">
+      <div><h2>Other non-drone bids</h2>
+        <p class="desc">Matched your NAICS codes or keywords but are not drone, UAS or counter-UAS work. Kept here so nothing is hidden.</p></div>
+      <select id="grp" class="select" aria-label="Filter by group"></select>
+    </div>
+    <div class="tblwrap"><table class="tbl">
+      <thead><tr><th>Group</th><th>Opportunity</th><th>Level</th><th>Agency</th><th>Due</th><th>Set-aside</th><th>Report</th><th>BidMatch entry</th></tr></thead>
+      <tbody id="otherbody"></tbody>
+    </table></div>
+  </section>
+
+  <section class="sec" id="parts">
+    <div class="sec-head"><div><h2>Manned-aircraft parts buys</h2>
+      <p class="desc" id="partsdesc"></p></div></div>
+    <div class="split">
+      <div><h3>Closing, by week</h3><div id="p-weeks" class="bars"></div></div>
+      <div><h3>Set-aside stated in the notice</h3><div id="p-sa" class="bars"></div></div>
+      <div><h3>Part class</h3><div id="p-fsc" class="bars"></div></div>
+      <div><h3>Where it was posted</h3><div id="p-feed" class="bars"></div></div>
+    </div>
+  </section>
+
+  <section class="sec" id="coverage">
+    <div class="sec-head"><div><h2>Report coverage</h2>
+      <p class="desc">The date-wise BidMatch reports in this snapshot, and how each was sorted.</p></div></div>
+    <div class="tblwrap"><table class="tbl">
+      <thead><tr><th>Report</th><th class="num">Listings</th><th class="num">Drone related</th><th class="num">Other non-drone</th><th class="num">Aircraft parts</th><th>BidMatch report</th></tr></thead>
+      <tbody id="reportbody"></tbody>
+    </table></div>
+  </section>
+
+  <section class="sec" id="archive">
+    <div class="sec-head"><div><h2>Archive</h2>
+      <p class="desc">Every earlier snapshot is kept. Open one to see the analysis exactly as it was that day.</p></div></div>
+    <div class="tblwrap"><table class="tbl">
+      <thead><tr><th>Snapshot</th><th class="num">Listings</th><th class="num">Drone related</th><th class="num">Closing within 14 days</th><th class="num">Other non-drone</th><th class="num">Aircraft parts</th><th></th></tr></thead>
+      <tbody id="archivebody"></tbody>
+    </table></div>
+  </section>
+
+  <details id="method">
+    <summary>How this was sorted and what to keep in mind</summary>
+    <p>Each listing's full notice text was read, not just its title. A bid is drone related when the notice is about a drone or UAS purchase, drone parts or payloads, drone services such as remote pilots, R&amp;D or grants for drones, or counter-UAS and robotics work. Mentions of drones as one topic among many (for example a seminar series) are kept out and noted.</p>
+    <ul>
+      <li>The keyword profile matches on FSC 1560 and 1680, several NAICS codes and keywords such as aircraft, UAS, unmanned and drone. The FSC codes and the word "aircraft" in titles pull in a large volume of parts buys for manned aircraft.</li>
+      <li>Set-aside is recorded only where the notice states one. "Not stated" means the entry did not say, not that the bid is unrestricted.</li>
+      <li>Some notices are sole-source intents or market research, not open solicitations. The note on each card says which.</li>
+      <li>State and local entries come through third-party bid portals and may need registration or a fee for the full package.</li>
+      <li>Days left are counted from the snapshot date, not from today.</li>
+    </ul>
+  </details>
+
+  <footer class="muted">GovBid by Marut-X Labs. Bid data comes from public government notices via MyBidMatch. Check the original notice before acting on any bid.</footer>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>

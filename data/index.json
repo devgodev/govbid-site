@@ -1,0 +1,13 @@
+{
+ "snapshots": [
+  {
+   "date": "2026-11-11",
+   "file": "archive/2026-11-11.json",
+   "listings": 738,
+   "drone": 9,
+   "closing14": 3,
+   "other": 45,
+   "parts": 684
+  }
+ ]
+}
