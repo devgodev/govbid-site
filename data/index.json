@@ -1,6 +1,15 @@
 {
  "snapshots": [
   {
+   "date": "2026-11-12",
+   "file": "archive/2026-11-12.json",
+   "listings": 842,
+   "drone": 10,
+   "closing14": 3,
+   "other": 66,
+   "parts": 766
+  },
+  {
    "date": "2026-11-11",
    "file": "archive/2026-11-11.json",
    "listings": 738,
