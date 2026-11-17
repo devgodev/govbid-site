@@ -45,8 +45,9 @@ def check(d, path):
         if r["listings"] != r["drone"] + r["parts"] + r["other"]:
             fail(path, f"report {r['report_date']}: listings != drone + parts + other")
     drone = sum(1 for b in d["bids"] if b["category"] != "Not drone related")
-    if drone != sum(r["drone"] for r in d["reports"]):
-        fail(path, "drone bids in 'bids' do not match the drone total in 'reports'")
+    # reports count listings; a bid that was repeated in several reports is one row in 'bids'
+    if drone > sum(r["drone"] for r in d["reports"]):
+        fail(path, "more drone bids in 'bids' than drone listings in 'reports'")
     totals = {p["bucket"]: p["count"] for p in d["parts"] if p["dimension"] == "total"}
     if totals.get("listings") != sum(r["parts"] for r in d["reports"]):
         fail(path, "parts 'total:listings' does not match the parts total in 'reports'")
